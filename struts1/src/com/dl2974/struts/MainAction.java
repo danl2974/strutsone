@@ -1,5 +1,7 @@
 package com.dl2974.struts;
 
+import java.util.LinkedList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
@@ -19,12 +21,18 @@ public class MainAction extends Action {
 			MainForm mForm = (MainForm) form;
 			
 			Mongo m = new Mongo();
-			m.setCollection("dantest");
-			Long collcount = m.getCount();
+			m.queryCollection("dantest");
+			LinkedList<String> collectionList = m.fetchAll();
+			StringBuilder sb = new StringBuilder();
+			for (String item : collectionList){
+				sb.append(item);
+				sb.append("\n\r");
+			}
 			
-			mForm.setMessage("Dan... count: " + String.valueOf(collcount) );
+			mForm.setMessage(sb.toString());
 	 
 			return mapping.findForward("success");
+			
 		}
 
 }

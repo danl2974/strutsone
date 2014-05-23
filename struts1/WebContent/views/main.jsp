@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-<h1><bean:write name="mainForm" property="message" />
-</h1>
+<pre><bean:write name="mainForm" property="message" />
+</pre>
 </body>
 </html>
